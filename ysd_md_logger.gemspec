@@ -7,4 +7,6 @@ Gem::Specification.new do |s|
   s.files   = Dir['lib/**/*.rb']
   s.summary = "Logger model"
   
+  s.add_runtime_dependency "ysd_md_configuration"
+  
 end

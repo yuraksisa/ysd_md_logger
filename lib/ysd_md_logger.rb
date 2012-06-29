@@ -1,1 +1,2 @@
 require 'ysd_md_logger_wrapper'
+require 'ysd_md_logger_device_wrapper'

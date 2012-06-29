@@ -5,9 +5,18 @@ require 'monitor'
 module Model
 
   #
-  # It's a logger wrapper which allows to publish the log in a set of loggers
+  # Logger inverse proxy allows create an inverse proxy of loggers
   #
-  class LoggerManager
+  # stdout_logger = ::Logger.new($stdout)
+  # file_logger   = ::Logger.new('./log.log')
+  #
+  # Model::LoggerInverseProxy.register_logger(stdout_logger)
+  # Model::LoggerInverseProxy.register_logger(file_logger)
+  #
+  # Assign the Model::LoggerInverseProxy
+  #
+  #
+  class LoggerInverseProxy
     include Singleton
     
     attr_reader :loggers
@@ -76,7 +85,7 @@ module Model
     def initialize(opts={})
     
        @mutex = YSDLoggerMutex.new
-       @level = DEBUG
+       @level = opts[:level] || ERROR
        @max_size = opts[:max_size] || 2000 
        @progname = opts[:progname]
        
@@ -138,11 +147,11 @@ module Model
     end
   
   end
-    
-   #
-   # Log message
-   #
-   class LogMessage
+      
+  #
+  # Log message
+  #
+  class LogMessage
      include DataMapper::Resource
       
       storage_names[:default] = 'system_log'
@@ -155,6 +164,6 @@ module Model
       property :message_summary, String, :field => 'message_summary', :length => 256
       property :message, Text, :field => 'message'
         
-   end  
+  end  
   
 end
