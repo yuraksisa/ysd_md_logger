@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.summary = "Logger model"
   s.homepage = "http://github.com/yuraksisa/ysd_md_logger"
   
-  s.add_runtime_dependency "data_mapper", "1.1.0"
+  s.add_runtime_dependency "data_mapper", "1.2.0"
 
   s.add_runtime_dependency "ysd_md_configuration"
     
